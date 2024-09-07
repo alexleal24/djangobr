@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css\login.css' %}">
+    <!-- <link rel="icon" href="{% static 'img/iconoLogin.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/iconoLogin.png' %}" type="image/x-icon"> -->
+    <title>Formulario de inicio de sesión</title>
+
+</head>
+<body>
+    
+    <div class="container animate">
+        <div class="log">
+            <div class="overlay"></div>
+            <div class="animated-text">
+                <h2 class="animate">Bienvenido a tu nueva intranet</h2>
+                <div class="parrafo animate">
+                    <p>Desde aquí podrás acceder a documentos importantes, realizar trámites internos y mucho mas. Ingresa para explorar todas las opciones.</p>
+                    <p style="font-size: 10px;">©BracarluTech. Equipo informatica</p>
+                </div>
+            </div>
+        </div>
+        <div class="login">
+            <br>
+            <div class="animate">
+                <h1>Iniciar Sesión</h1>
+                <p>Por favor, ingresa tus credenciales</p>
+                <br>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="login" class="fadeIn second" name="username" required placeholder="Usuario">
+                    <input type="password" id="password" class="fadeIn second" name="password" required placeholder="Contraseña">
+                    <br>
+                    <br>
+                    <input type="submit" class="btnlog" value="Iniciar sesión">
+                </form>
+
+            </div>
+        </div> 
+    </div>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

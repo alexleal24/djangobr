@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'css\main.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css\menu.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" href="{% static 'css\datos.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Mis Datos</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class="bx bxl-c-plus-plus"></i>
+            <span class="logo_name">BracarluTech</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'principal' %}">
+                    <i class="fas fa-home"></i>
+                    <span class="link_name">Inicio</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="{% url 'principal' %}">Inicio</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a href="#">
+                        <i class="fas fa-regular fa-file"></i>
+                        <span class="link_name">Información</span>
+                    </a>
+                    <i class="fas fa-duotone fa-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Información</a></li>
+                    <li><a href="{url 'mis_datos'}">Mis Datos</a></li>
+                    <li><a href="#">Asistencia Personal</a></li>
+                    <li><a href="#">Asistencia General</a></li>
+                    {% if es_rrhh or es_supervisor %}
+                        <li><a href="#">Consultar Beneficios</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li>
+                <div class="icon-link">
+                    <a href="#">
+                        <i class="fas fa-solid fa-window-maximize"></i>
+                        <span class="link_name">Solicitudes</span>
+                    </a>
+                    <i class="fas fa-duotone fa-chevron-down arrow"></i>
+
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Solicitudes</a></li>
+                        <li><a href="#">Solicitar D/Administrativo</a></li>
+                        <li><a href="#">D. Administrativos para operario</a></li>
+                    <li><a href="#">Solicitar permiso retiro</a></li>
+                        <li><a href="#">Solicitar Vacaciones</a></li>
+                </ul>
+            </li>
+
+            <li>
+                {% if es_rrhh %}
+                    <a href="#">
+                        <i class="fas fa-solid fa-tasks"></i>
+                        <span class="link_name">Gestionar Solicitudes</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="#">Gestionar Solicitudes</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+
+            <li>
+                {% if es_rrhh %}
+                    <a href="#">
+                        <i class="fas fa-solid fa-check"></i>
+                        <span class="link_name">Solicitudes OP</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="#">Solicitudes OP</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+
+            {% if es_rrhh %}
+            <li hidden>
+                <div class="icon-link">
+                    <a href="#">
+                        <i class="fas fa-solid fa-business-time"></i>
+                        <span class="link_name">Horas Extra</span>
+                    </a>
+                    <i class="fas fa-duotone fa-chevron-down arrow"></i>
+
+                </div>
+                <ul class="sub-menu">
+                    <li hi><a class="link_name" href="#">Horas Extra</a></li>
+                    {% if es_rrhh or es_supervisor %}
+                        <li><a href="#">Registrar horas extra</a></li>
+                    {% endif %}
+
+                    {% if es_rrhh %}
+                        <li><a href="#">Ver horas extra</a></li>
+                    {% endif %}
+                    
+                </ul>
+            </li>
+            {% endif %}
+
+        
+
+            <li>
+                {% if es_rrhh or es_rh %}
+                    <a href="#">
+                        <i class="fas fa-solid fa-users"></i>
+                        <span class="link_name">Permisos</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="#">Permisos</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+
+            <li>
+                <div class="icon-link">
+                    <a href="#">
+                        <i class="fas fa-solid fa-exclamation"></i>
+                        <span class="link_name">Reportes</span>
+                    </a>
+                    <i class="fas fa-duotone fa-chevron-down arrow"></i>
+
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Reportes</a></li>
+                    <li><a href="#">Registrar error</a></li>
+                    {% if es_rrhh %}
+                        <li><a href="#">Listado de errores</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fas fa-solid fa-comment"></i>
+                    <span class="link_name">Chat</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Chat</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="{% static 'img/usuario.png' %}" alt="profile">
+                </div>
+                    <div class="name-job">
+                        <div class="profile_name">{{ usuario_rrhh.28 }}</div>
+                        <div class="job">{{ usuario_rrhh.3 }}</div>
+                    </div>
+                    <a href="#"><i class="fas fa-solid fa-door-open"></i></a> 
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="home-content">
+            <span class="text"></span>
+            <div class="barra-herramientas" >
+                <div style="margin-left: 10px;">
+                    <i class="fas fa-solid fa-bars" style="color: white;"></i>
+                </div> <!-- Agrega tu contenido específico aquí -->
+                <div>
+                    {% if es_rrhh %}
+                        <div id="notificaciones-container" style="position: relative; display: inline-block;">
+                            <!-- <i class="fas fa-solid fa-exclamation" id="errores" style="margin-right: 10px; color: white; position: relative;"></i>
+                            <span id="contador-notificaciones2" style="display: none; position: absolute; top: -8px; right: 46px; background-color: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;"></span> -->
+                                <i class="fas fa-solid fa-bell" id="icono-bell" style="margin-right: 10px; color: white;"></i>
+                                <span id="contador-notificaciones" style="background-color: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px; position: absolute; top: -8px; right: -2px;"></span>
+                            <div id="detalles-solicitud" style="position: absolute; display: none; background-color: white; border: 1px solid #ccc; padding: 10px; z-index: 100; top: 100%; left: 0; color: black;">
+                                <p class="detalle-solicitud"></p>
+                                <p class="motivo-permiso"></p>
+                                <!-- <p class="fecha-solicitud"></p> -->
+                                <button id="cerrar-notificaciones">Cerrar</button>
+                            </div>
+                        </div>
+                    {% endif %}  
+
+                    <a href="https://mail.google.com" target="_blank" style="text-decoration: none; color: white;">
+                        <i class="fas fa-solid fa-envelope" style="margin-right: 10px; color: white;"></i> 
+                      </a>
+                    <a style="color: white;">
+                        <i id="icono-usuario" class="fas fa-regular fa-user" style="color: white; margin-right: 10px;"></i>
+                    </a>
+
+                    
+
+                    <div id="menu-usuario" style="position: absolute; display: none; background-color: white; border: 1px solid #ccc; padding: 10px; z-index: 100; color: black;">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-lock"></i> Cambiar Contraseña
+                                </a>
+                            </li>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br><br>
+        <div class="data">
+            <h1>Mis datos</h1>
+            <br><br>
+            <h3>Información de {{ usuario_rrhh.26 }}</h3>
+            <br>
+            <p>RUT: {{ usuario_rrhh.5 }}</p>
+            <p>NOMBRE: {{ usuario_rrhh.4 }}</p>
+            <p>CARGO: {{ usuario_rrhh.3 }}</p>
+            <p>NACIONALIDAD: {{ usuario_rrhh.8 }}</p>
+            <p>ESTADO CIVIL: {{ usuario_rrhh.9 }}</p>
+            <p>FECHA DE NACIMIENTO: {{ usuario_rrhh.10 }}</p>
+            <p>DIRECCION: {{ usuario_rrhh.11 }}</p>
+            <p>COMUNA: {{ usuario_rrhh.12 }}</p>
+            
+        </div>
+
+        <div class="data">
+            <h3>Información de contacto</h3>
+            <br>
+            <p>CORREO: {{ usuario_rrhh.15 }}</p>
+            <p>CELULAR: {{ usuario_rrhh.16 }}</p>
+        </div>
+
+
+        
+        
+
+        
+    </section>
+
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        console.log(arrow);
+        for (var i = 0; i < arrow.length; i++){
+            arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;
+            console.log(arrowParent)
+            arrowParent.classList.toggle("showMenu");
+            });
+        }
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".fa-bars")
+        console.log(sidebarBtn)
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });
+    </script>
+    
+</body>
+</html>
